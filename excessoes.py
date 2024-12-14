@@ -11,7 +11,6 @@ class OpcaoInvalida(AssertionError):
 class NomeInvalido(AssertionError):
     """Exceção personalizada para strings muito curtas."""
     def __init__(self, tamanho, categoria):
-        self.tamanho = tamanho
         message = (f"erro ao validar categoria \"{categoria}\": "
                    f"A string fornecida tem apenas {tamanho} caracteres. "
                    f"O tamanho mínimo permitido é 3.")

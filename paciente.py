@@ -13,7 +13,7 @@ class Paciente:
 
     def __init__(self,_id,nome,sexo,tipo_sanguineo,altura,peso,leito):
         self.id=valida_id(_id=_id)
-        self.nome = valida_nome(nome),
+        self.nome = valida_nome(nome)
         self.sexo = valida_opcoes(variavel=sexo,
                                   opcoes=self.sexos,
                                   categoria="sexo")
