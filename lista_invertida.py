@@ -1,4 +1,4 @@
-class ListaInvertida:
+class Registros:
     def __init__(self):
         self.resgistros = {}
 
