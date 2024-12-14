@@ -1,4 +1,4 @@
-from validadores import valida_opcoes, valida_nome, valida_intervalo
+from validadores import valida_opcoes, valida_nome, valida_intervalo, valida_id
 
 class Paciente:
 
@@ -9,7 +9,8 @@ class Paciente:
     peso_minimo = 1.0
     peso_maximo = 500.0
 
-    def __init__(self, nome, sexo, tipo_sanguineo, altura, peso, leito):
+    def __init__(self,id,nome,sexo,tipo_sanguineo,altura,peso,leito):
+        self.id=valida_id(id)
         self.nome = valida_nome(nome),
         self.sexo = valida_opcoes(variavel=sexo,
                                   opcoes=self.sexos,

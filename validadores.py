@@ -15,9 +15,12 @@ def valida_nome(nome):
     return nome
 
 def valida_intervalo(variavel,minimo,maximo,categoria):
-    assert isinstance(variavel, float), f"Erro na categoria \"{categoria}\": Esperado tipo 'str', mas foi recebido '{type(variavel).__name__}'"
+    assert isinstance(variavel, float), f"Erro na categoria \"{categoria}\": Esperado tipo 'float', mas foi recebido '{type(variavel).__name__}'"
     if variavel < minimo or variavel > maximo:
         raise ErroDeIntervalo(variavel=variavel,
                               minimo=minimo,
                               maximo=maximo,
                               categoria=categoria)
+    
+def valida_id(self, id):
+    assert isinstance(id, int), f"Erro na categoria \"id\": Esperado tipo 'int', mas foi recebido '{type(id).__name__}'"
