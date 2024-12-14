@@ -12,7 +12,7 @@ def main():
         print("1. Inserir Paciente")
         print("2. Consulta simples")
         print("3. Consulta composta")
-        print("4. Inclusão de novo elemento")
+        print("4. Remoção de elemento por ID")
         print("5. Busca de elemento por ID")
         print("6. carga de dados")
         print("7. Exibir todos os dados")
@@ -54,9 +54,9 @@ def main():
             campo = input("Escolha o campo (sexo/tipo_sanguineo/altura): ")
             valor = input("Especifique o valor para busca: ")
             if campo == 'sexo':
-                results = diretorio_sexo.buscar(valor)
+                pacientes = diretorio_sexo.buscar(valor)
             elif campo == 'tipo_sanguineo':
-                results = diretorio_tipo_sanguineo.buscar(valor)
+                pacientes = diretorio_tipo_sanguineo.buscar(valor)
             # elif campo == 'height':
             #     min_value, max_value = map(int, valor.split())
             #     results = height_directory.search_range(min_value, max_value)
@@ -65,10 +65,41 @@ def main():
                 continue
     
             print(f"resultados para valor {valor} no campo {campo}: ")
-            for patient in results:
+            for paciente in pacientes:
                 print()
-                print(vars(patient))
+                print(vars(paciente))
 
+        elif escolha == "3":
+            campo1 = input("Escolha o primeiro campo (sexo/tipo_sanguineo/altura): ")
+            valor1 = input("Especifique o valor para busca no primeiro campo: ")
+            campo2 = input("Escolha o segundo campo (sexo/tipo_sanguineo/altura): ")
+            valor2 = input("Especifique o valor para busca no segundo campo: ")
+            if campo1 == 'sexo':
+                resultados1 = diretorio_sexo.buscar(valor1)
+            elif campo1 == 'tipo_sanguineo':
+                resultados1 = diretorio_tipo_sanguineo.buscar(valor1)
+            # elif campo1 == 'height':
+            #     min_value, max_value = map(int, valor1.split())
+            #     results1 = height_directory.search_range(min_value, max_value)
+            else:
+                print("Primeira coluna inválida.")
+                continue
+            if campo2 == 'sexo':
+                resultados2 = diretorio_sexo.buscar(valor2)
+            elif campo2 == 'tipo_sanguineo':
+                resultados2 = diretorio_tipo_sanguineo.buscar(valor2)
+            # elif campo2 == 'height':
+            #     min_value, max_value = map(int, valor2.split())
+            #     results2 = height_directory.search_range(min_value, max_value)
+            else:
+                print("Segunda coluna inválida.")
+                continue
+            pacientes = resultados1.intersection(resultados2)
+            print()
+            print(f"resultados para valor {valor1} no campo {campo1} e valor {valor2} no campo {campo2}: ")
+            for paciente in pacientes:
+                print()
+                print(vars(paciente))
 
         elif escolha == "6":
             lista_invertida.carga_de_dados()
@@ -77,6 +108,11 @@ def main():
                 diretorio_tipo_sanguineo.adicionar(registro.tipo_sanguineo, registro)
             print()
             print("carga de dados finalizada com sucesso!!!")
+
+        # elif escolha == "4":
+        #     id = int(input("ID: "))
+        #     registro = 
+        #     lista_invertida.delete_by_id(id)
 
 if __name__ == "__main__":
     main()
