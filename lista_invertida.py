@@ -2,7 +2,7 @@ from paciente import Paciente
 
 class ListaInvertida:
     def __init__(self):
-        self.registros = {}
+        self.registros = dict()
 
     def inserir(self, registro):
         self.registros.setdefault(registro.id, registro)
@@ -35,7 +35,3 @@ class ListaInvertida:
 
         for paciente in dados_iniciais:
             self.inserir(paciente)
-    
-registros = Registros()
-registros.carga_de_dados()
-registros.mostra_todos()
