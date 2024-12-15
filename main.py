@@ -114,7 +114,7 @@ def main():
                     diretorio_sexo.remover(paciente.sexo, paciente)
                     diretorio_tipo_sanguineo.remover(paciente.tipo_sanguineo, paciente)
                     diretorio_altura.remover(paciente.altura, paciente)
-                    pritn()
+                    print()
                     print("Paciente removido com sucesso!")
                 else:
                     print()
