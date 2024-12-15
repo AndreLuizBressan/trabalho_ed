@@ -10,3 +10,11 @@ class Diretorio:
 
     def buscar(self, chave):
         return self.indice.get(chave, set())
+    
+class DiretorioContinuo(Diretorio):
+    def buscar_por_intervalo(self, minimo, maximo):
+        resultados = set()
+        for chave in self.indice:
+            if minimo <= chave <= maximo:
+                resultados = resultados.union(self.indice[chave])
+        return resultados

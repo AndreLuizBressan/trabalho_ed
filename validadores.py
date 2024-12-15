@@ -21,6 +21,7 @@ def valida_intervalo(variavel,minimo,maximo,categoria):
                               minimo=minimo,
                               maximo=maximo,
                               categoria=categoria)
+    return variavel
     
 def valida_id(_id):
     assert isinstance(_id, int), f"Erro na categoria \"id\": Esperado tipo 'int', mas foi recebido '{type(_id).__name__}'"

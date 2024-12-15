@@ -1,4 +1,4 @@
-from diretorios import Diretorio
+from diretorios import Diretorio, DiretorioContinuo
 from lista_invertida import ListaInvertida
 from paciente import Paciente
 
@@ -6,6 +6,7 @@ def main():
     lista_invertida = ListaInvertida()
     diretorio_sexo = Diretorio()
     diretorio_tipo_sanguineo = Diretorio()
+    diretorio_altura = DiretorioContinuo()
 
     while True:
         print("\nMenu:")
@@ -46,6 +47,7 @@ def main():
                     lista_invertida.inserir(paciente)
                     diretorio_sexo.adicionar(sexo, paciente)
                     diretorio_tipo_sanguineo.adicionar(tipo_sanguineo, paciente)
+                    diretorio_altura.adicionar(altura, paciente)
                     print("Paciente adicionado com sucesso!!!")
                 except AssertionError as e:
                     print(e)
@@ -57,19 +59,21 @@ def main():
                 pacientes = diretorio_sexo.buscar(valor)
             elif campo == 'tipo_sanguineo':
                 pacientes = diretorio_tipo_sanguineo.buscar(valor)
-            # elif campo == 'height':
-            #     min_value, max_value = map(int, valor.split())
-            #     results = height_directory.search_range(min_value, max_value)
+            elif campo == 'altura':
+                min_value, max_value = map(float, valor.split())
+                pacientes = diretorio_altura.buscar_por_intervalo(min_value, max_value)
             else:
                 print("Coluna inválida.")
                 continue
     
+            print()
             print(f"resultados para valor {valor} no campo {campo}: ")
             for paciente in pacientes:
                 print()
                 print(vars(paciente))
 
         elif escolha == "3":
+            print()
             campo1 = input("Escolha o primeiro campo (sexo/tipo_sanguineo/altura): ")
             valor1 = input("Especifique o valor para busca no primeiro campo: ")
             campo2 = input("Escolha o segundo campo (sexo/tipo_sanguineo/altura): ")
@@ -78,9 +82,9 @@ def main():
                 resultados1 = diretorio_sexo.buscar(valor1)
             elif campo1 == 'tipo_sanguineo':
                 resultados1 = diretorio_tipo_sanguineo.buscar(valor1)
-            # elif campo1 == 'height':
-            #     min_value, max_value = map(int, valor1.split())
-            #     results1 = height_directory.search_range(min_value, max_value)
+            elif campo1 == 'altura':
+                minimo, maximo = map(float, valor1.split())
+                resultados1 = diretorio_altura.buscar_por_intervalo(minimo, maximo)
             else:
                 print("Primeira coluna inválida.")
                 continue
@@ -88,9 +92,9 @@ def main():
                 resultados2 = diretorio_sexo.buscar(valor2)
             elif campo2 == 'tipo_sanguineo':
                 resultados2 = diretorio_tipo_sanguineo.buscar(valor2)
-            # elif campo2 == 'height':
-            #     min_value, max_value = map(int, valor2.split())
-            #     results2 = height_directory.search_range(min_value, max_value)
+            elif campo2 == 'altura':
+                minimo, maximo = map(float, valor2.split())
+                resultados2 = diretorio_altura.buscar_por_intervalo(minimo, maximo)
             else:
                 print("Segunda coluna inválida.")
                 continue
@@ -106,13 +110,22 @@ def main():
             for registro in lista_invertida.registros.values():
                 diretorio_sexo.adicionar(registro.sexo, registro)
                 diretorio_tipo_sanguineo.adicionar(registro.tipo_sanguineo, registro)
+                diretorio_altura.adicionar(registro.altura, registro)
             print()
             print("carga de dados finalizada com sucesso!!!")
 
-        # elif escolha == "4":
-        #     id = int(input("ID: "))
-        #     registro = 
-        #     lista_invertida.delete_by_id(id)
+        elif escolha == "4":
+            id = int(input("ID: "))
+            lista_invertida.delete_by_id(id)
+
+        elif escolha == "7":
+            lista_invertida.mostra_todos()
+
+        elif escolha == "8":
+            break
+
+        else:
+            print("Opção inválida.")
 
 if __name__ == "__main__":
     main()
