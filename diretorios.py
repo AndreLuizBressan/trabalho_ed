@@ -10,6 +10,10 @@ class Diretorio:
 
     def buscar(self, chave):
         return self.indice.get(chave, set())
+
+    def remover(self, chave, id):
+        if chave in self.indice:
+            self.indice[chave].discard(id)
     
 class DiretorioContinuo(Diretorio):
     def buscar_por_intervalo(self, minimo, maximo):

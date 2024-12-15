@@ -105,6 +105,35 @@ def main():
                 print()
                 print(vars(paciente))
 
+        elif escolha == "4":
+            try:
+                id = int(input("ID do paciente a ser removido: "))
+                paciente = lista_invertida.procura_por_id(id)
+                if paciente:
+                    lista_invertida.deleta_por_id(id)
+                    diretorio_sexo.remover(paciente.sexo, paciente)
+                    diretorio_tipo_sanguineo.remover(paciente.tipo_sanguineo, paciente)
+                    diretorio_altura.remover(paciente.altura, paciente)
+                    pritn()
+                    print("Paciente removido com sucesso!")
+                else:
+                    print()
+                    print("Paciente com o ID especificado não encontrado.")
+            except ValueError:
+                print("Por favor, insira um ID válido.")
+
+        elif escolha == "5":
+            try:
+                id = int(input("ID do paciente a ser buscado: "))
+                paciente = lista_invertida.procura_por_id(id)
+                if paciente:
+                    print("Paciente encontrado:")
+                    print(vars(paciente))
+                else:
+                    print("Paciente com o ID especificado não encontrado.")
+            except ValueError:
+                print("Por favor, insira um ID válido.")
+
         elif escolha == "6":
             lista_invertida.carga_de_dados()
             for registro in lista_invertida.registros.values():
@@ -114,9 +143,6 @@ def main():
             print()
             print("carga de dados finalizada com sucesso!!!")
 
-        elif escolha == "4":
-            id = int(input("ID: "))
-            lista_invertida.delete_by_id(id)
 
         elif escolha == "7":
             lista_invertida.mostra_todos()
